@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Todos } from './store/todos.store';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'app';
+  title = '';
+
+  constructor(public todos: Todos) {}
+
+  addTodo() {
+      this.todos.addTodo({ title: this.title });
+      this.title = '';
+  }
 }

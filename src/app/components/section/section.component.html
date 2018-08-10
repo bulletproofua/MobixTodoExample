@@ -1,0 +1,34 @@
+<mat-toolbar style="margin-top: 10px" class="toolbar">
+  <mat-toolbar-row>
+    <span>
+      Uncompleted: {{todos.uncompletedItems}}
+    </span>
+    <span class="fill-remaining-space"></span>
+    <app-filters></app-filters>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-card style="margin-top: 10px" ng-show="todos.length" *mobxAutorun>
+  <mat-list class="list">
+    <mat-list-item *ngFor="let todo of todos.filteredTodos">
+      <mat-checkbox [checked]="todo.completed" (change)="todo.setCompleted(!todo.completed)"></mat-checkbox>
+      <mat-form-field class="full-w-form-field">
+        <input matInput [readonly]='true' [value]="todo.title">
+      </mat-form-field>
+      <button mat-raised-button mat-icon-button (click)="todos.removeTodo(todo)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-list-item>
+  </mat-list>
+
+  <div ng-show="todos.length" style="height: 16px"></div>
+
+  <div class="btn-bar">
+    <span class="fill-remaining-space"></span>
+    <button mat-button color="primary" (click)="todos.setCompleteAll(!todos.allComplete)">
+      <span [hidden]="todos.allComplete"> Mark all as completed </span>
+      <span [hidden]="!todos.allComplete"> Mark all as Uncompleted </span>
+    </button>
+    <button mat-button color="warn" (click)="todos.clearCompleted()">Clear completed</button>
+  </div>
+</mat-card>

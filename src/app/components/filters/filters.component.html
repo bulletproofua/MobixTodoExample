@@ -1,0 +1,13 @@
+<div *mobxAutorun>
+  <mat-button-toggle-group #group="matButtonToggleGroup">
+    <mat-button-toggle [checked]="todos.filter === 'SHOW_ALL'" (click)="todos.showAll()">
+      <span>All</span>
+    </mat-button-toggle>
+    <mat-button-toggle [checked]="todos.filter === 'ACTIVE'" (click)="todos.showActive()">
+      <span>Active</span>
+    </mat-button-toggle>
+    <mat-button-toggle [checked]="todos.filter === 'COMPLETED'" (click)="todos.showCompleted()">
+      <span>Completed</span>
+    </mat-button-toggle>
+  </mat-button-toggle-group>
+</div>
